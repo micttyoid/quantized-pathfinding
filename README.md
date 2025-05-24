@@ -32,4 +32,4 @@ flowchart LR
 
 Indeed(to just use algorithm), you don't need to use this. 
 You can, for example, implement float-like type to directly work with 
-pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
+[pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
