@@ -1,0 +1,90 @@
+# Cloudflare
+.wrangler/
+
+# CPP
+build/
+
+# Database populated for testing
+var/
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Distribution of documentation
+
+dist.docs/
+
+# Javascript / Web Application
+dist/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Mac OS X
+.DS_Store
+
+# Miscellaneous, soon-to-be disposed, nearly temporary
+.misc/
+
+# Python
+__pycache__/
+*.egg-info/
+*.py[cod]
+*.pyc
+*.pyo
+*$py.class
+.Python/
+.cache
+.eggs/
+.pytest_cache
+.coverage
+.coverage.*
+.python-version
+coverage.xml
+pip-wheel-metadata/
+pytestdebug.log
+
+# Random mess
+.idea
+
+# Rust
+/target
+
+# Security/Environment
+*.env
+.env.*
+.venv
+env/
+venv/
+*.pem
+
+# Terraform/OpenTofu
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.tfstate.lock.info
+.terraformrc
+terraform.rc
+
+# VSCode
+.editorconfig
+.vscode
+out/
+
+# Yarn v2
+.yarn/build-state.yml
+.yarn/cache
+.yarn/install-state.gz
+.yarn/unplugged
+.pnp.*
