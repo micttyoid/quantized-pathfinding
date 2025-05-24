@@ -1,3 +1,10 @@
+macro_rules! warn_if {
+    ($cond:expr, $($arg:tt)*) => {
+        if $cond {
+            eprintln!("WARN: {}", format_args!($($arg)*));
+        }
+    };
+}
 
 #[derive(Debug, Clone, Copy)]
 pub struct QuantizerInquisitive {
@@ -9,18 +16,14 @@ pub struct QuantizerInquisitive {
 
 impl QuantizerInquisitive {
     pub fn with_n(a: f64, b: f64, n_levels: usize) -> Self {
-        if (b > a && n_levels >= 2) {
-            warn!("b is larger than a", value);
-        }
+        warn_if!(b > a && n_levels >= 2, "b is larger than a");
         let step_size = (b - a) / (n_levels - 1) as f64;
         QuantizerInquisitive { a, b, n_levels, step_size }
     }
 
     pub fn with_step_size(a: f64, b: f64, step_size: f64) -> Self {
-        if (b > a && n_levels >= 2) {
-            warn!("b is larger than a", value);
-        }        
-        let n_levels =  (((b - a) / step_size) + 1.0) as usize; 
+        let n_levels =  (((b - a) / step_size) + 1.0) as usize;         
+        warn_if!(b > a && n_levels >= 2, "b is larger than a ");
         QuantizerInquisitive { a, b, n_levels, step_size }
     }
 
