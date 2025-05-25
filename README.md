@@ -33,3 +33,14 @@ flowchart LR
 Indeed(to just use algorithm), you don't need to use this. 
 You can, for example, implement float-like type to directly work with 
 pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
+
+## QnA
+
+**What'd be different from theory?**
+It's finite. use the boundries instead of infinity in those procedures.
+
+**How to use them?**
+You'd probably mix with other functionality or algorithms.
+
+**Any unobvious catch?**
+The input type seems very generous but it may need more traits or method **as you need** within the explorative body of the algorithm.

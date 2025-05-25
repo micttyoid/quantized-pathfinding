@@ -255,6 +255,121 @@ mod tests {
             PseudoFloat::new(-1.0)
         );
     }
+
+
+    // round methods
+    #[test]
+    fn test_f32_round() {
+        assert_eq!(3.2f32.round(), 3.0f32);
+        assert_eq!(3.5f32.round(), 4.0f32);
+        assert_eq!(3.7f32.round(), 4.0f32);
+        assert_eq!((-3.2f32).round(), -3.0f32);
+        assert_eq!((-3.5f32).round(), -4.0f32);
+        assert_eq!((-3.7f32).round(), -4.0f32);
+        assert_eq!(0.0f32.round(), 0.0f32);
+    }
+
+    #[test]
+    fn test_f64_round() {
+        assert_eq!(3.2f64.round(), 3.0f64);
+        assert_eq!(3.5f64.round(), 4.0f64);
+        assert_eq!(3.7f64.round(), 4.0f64);
+        assert_eq!((-3.2f64).round(), -3.0f64);
+        assert_eq!((-3.5f64).round(), -4.0f64);
+        assert_eq!((-3.7f64).round(), -4.0f64);
+        assert_eq!(0.0f64.round(), 0.0f64);
+    }
+
+    #[test]
+    fn test_round_with_conversion() {
+        // Test round in combination with other trait methods
+        let val_f32 = f32::from_usize(5) + 0.7f32;
+        assert_eq!(val_f32.round().to_usize(), 6);
+        
+        let val_f64 = f64::from_usize(5) + 0.3f64;
+        assert_eq!(val_f64.round().to_usize(), 5);
+    }
+
+    #[test]
+    fn test_round_edge_cases() {
+        // Test exactly halfway cases (banker's rounding in Rust)
+        assert_eq!(2.5f32.round(), 3.0f32);
+        assert_eq!(3.5f32.round(), 4.0f32);
+        assert_eq!(2.5f64.round(), 3.0f64);
+        assert_eq!(3.5f64.round(), 4.0f64);
+        
+        // Test very small numbers
+        assert_eq!(0.1f32.round(), 0.0f32);
+        assert_eq!(0.9f32.round(), 1.0f32);
+        assert_eq!(0.1f64.round(), 0.0f64);
+        assert_eq!(0.9f64.round(), 1.0f64);
+    }
+
+    #[test]
+    fn test_pseudo_float_round() {
+        assert_eq!(PseudoFloat::new(3.2).round(), PseudoFloat::new(3.0));
+        assert_eq!(PseudoFloat::new(3.5).round(), PseudoFloat::new(4.0));
+        assert_eq!(PseudoFloat::new(3.7).round(), PseudoFloat::new(4.0));
+        assert_eq!(PseudoFloat::new(-3.2).round(), PseudoFloat::new(-3.0));
+        assert_eq!(PseudoFloat::new(-3.5).round(), PseudoFloat::new(-4.0));
+        assert_eq!(PseudoFloat::new(-3.7).round(), PseudoFloat::new(-4.0));
+        assert_eq!(PseudoFloat::new(0.0).round(), PseudoFloat::new(0.0));
+    }
+
+    #[test]
+    fn test_pseudo_float_round_with_conversion() {
+        let val = PseudoFloat::from_usize(5) + PseudoFloat::new(0.7);
+        assert_eq!(val.round().to_usize(), 6);
+        
+        let val2 = PseudoFloat::from_usize(5) + PseudoFloat::new(0.3);
+        assert_eq!(val2.round().to_usize(), 5);
+    }
+
+    #[test]
+    fn test_pseudo_float_round_edge_cases() {
+        // Test exactly halfway cases
+        assert_eq!(PseudoFloat::new(2.5).round(), PseudoFloat::new(3.0));
+        assert_eq!(PseudoFloat::new(3.5).round(), PseudoFloat::new(4.0));
+        
+        // Test very small numbers
+        assert_eq!(PseudoFloat::new(0.1).round(), PseudoFloat::new(0.0));
+        assert_eq!(PseudoFloat::new(0.9).round(), PseudoFloat::new(1.0));
+    }
+
+    #[test]
+    fn test_pseudo_float_arithmetic_with_round() {
+        let a = PseudoFloat::new(3.7);
+        let b = PseudoFloat::new(2.3);
+        
+        let sum = (a + b).round();
+        assert_eq!(sum, PseudoFloat::new(6.0));
+        
+        let diff = (a - b).round();
+        assert_eq!(diff, PseudoFloat::new(1.0));
+        
+        let product = (a * b).round();
+        assert_eq!(product, PseudoFloat::new(9.0)); // 3.7 * 2.3 = 8.51, rounds to 9
+    }
+
+    #[test]
+    fn test_pseudo_float_generic_usage() {
+        fn generic_round_test<T: FiniteFloat>(val: T) -> T {
+            val.round()
+        }
+        
+        let pseudo = PseudoFloat::new(3.7);
+        let rounded = generic_round_test(pseudo);
+        assert_eq!(rounded, PseudoFloat::new(4.0));
+    }
+
+    #[test]
+    fn test_pseudo_float_round_trip() {
+        let original = 42usize;
+        let pseudo = PseudoFloat::from_usize(original);
+        let rounded = pseudo.round();
+        let back_to_usize = rounded.to_usize();
+        assert_eq!(original, back_to_usize);
+    }    
 }
 
 // Basic functions using type of FiniteFloat trait
@@ -360,5 +475,9 @@ impl FiniteFloat for PseudoFloat {
     
     fn to_usize(self) -> usize {
         self.value as usize
+    }
+    
+    fn round(self) -> Self {
+        Self { value: self.value.round() }
     }
 }
