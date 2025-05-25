@@ -10,12 +10,12 @@ the algorithmic part.
 None! I need to de-mess(yuk!) my code(which seems 
 [working](https://youtu.be/JAGTxxRinCU)) before publishing :p
 
-`quantized_star` will be done in a week(will be done before 05-31-2025).
+`quantized_astar` will be done in a week(will be done before 05-31-2025).
 
 ## How does this work
 
-This preprocesses data before target algorithm(`pathfinding`)
-and recovers the output(lossy).
+This preprocesses the input before the target algorithm(pathfinding)
+and roughly recovers the output.
 
 ```mermaid
 flowchart LR
