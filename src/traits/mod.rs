@@ -3,6 +3,12 @@ use std::{
     // convert
 };
 
+pub trait HasQuantizationMethods<T, const DIM: usize> {
+    fn quantize_ieee754(&self, x: [T; DIM]) -> [usize; DIM];
+    fn quantize(&self, x: [T; DIM]) -> [usize; DIM];
+    fn dequantize(&self, n: [usize; DIM]) -> [T; DIM];
+}
+
 // Loosen float. Looser than IEEE 754 since it is to work with the quantizer
 pub trait FiniteFloat:
     Copy + 

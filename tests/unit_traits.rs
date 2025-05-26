@@ -373,6 +373,50 @@ mod tests {
         let rounded = pseudo.round();
         let back_to_usize = rounded.to_usize();
         assert_eq!(original, back_to_usize);
+    }
+
+
+    #[test]
+    fn test_finite_float_trait_f32() {
+        // Test FiniteFloat implementation for f32
+        let n = 42usize;
+        let f = f32::from_usize(n);
+        assert_eq!(f, 42.0f32);
+        assert_eq!(f.to_usize(), n);
+
+        // Test rounding
+        let rounded = 3.7f32.round();
+        assert_eq!(rounded, 4.0f32);
+
+        let rounded2 = 3.2f32.round();
+        assert_eq!(rounded2, 3.0f32);
+
+        // Test IEEE754 rounding (truncation)
+        assert_eq!(3.7f32.round_ieee754(), 3);
+        assert_eq!(3.2f32.round_ieee754(), 3);
+        assert_eq!(3.9f32.round_ieee754(), 3);
+    }
+
+    // it is kinda redundant
+    #[test]
+    fn test_finite_float_trait_f64() {
+        // Test FiniteFloat implementation for f64
+        let n = 123usize;
+        let f = f64::from_usize(n);
+        assert_eq!(f, 123.0f64);
+        assert_eq!(f.to_usize(), n);
+
+        // Test rounding
+        let rounded = 2.8f64.round();
+        assert_eq!(rounded, 3.0f64);
+
+        let rounded2 = 2.1f64.round();
+        assert_eq!(rounded2, 2.0f64);
+
+        // Test IEEE754 rounding (truncation)
+        assert_eq!(2.8f64.round_ieee754(), 2);
+        assert_eq!(2.1f64.round_ieee754(), 2);
+        assert_eq!(2.9f64.round_ieee754(), 2);
     }    
 }
 
