@@ -16,6 +16,7 @@ pub trait FiniteFloat:
     fn to_usize(self) -> usize;
 
     // for quantization or similar operation
+    fn round_ieee754 (self) -> usize;
     fn round(self) -> Self;
 }
 
@@ -28,6 +29,11 @@ impl FiniteFloat for f32 {
         self as usize
     }
     
+    // IEEE 754 style round
+    fn round_ieee754 (self) -> usize {
+        self as usize
+    }
+
     fn round(self) -> Self {
         self.round()
     }
@@ -39,6 +45,11 @@ impl FiniteFloat for f64 {
     }
     
     fn to_usize(self) -> usize {
+        self as usize
+    }
+
+    // IEEE 754 style round
+    fn round_ieee754 (self) -> usize {
         self as usize
     }
     

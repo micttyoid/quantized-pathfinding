@@ -19,6 +19,11 @@ impl<T: FiniteFloat> Quantizer<T> {
         Quantizer { a, b, n_levels, step_size }
     }
 
+    /// Quantize with the Round function of truncation of IEEE754
+    pub fn quantize_ieee754(&self, x: T) -> usize {
+        ((x - self.a) / self.step_size).round_ieee754()
+    }
+
     pub fn quantize(&self, x: T) -> usize {
         ((x - self.a) / self.step_size).round().to_usize()
     }

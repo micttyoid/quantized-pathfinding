@@ -33,6 +33,15 @@ impl<T: FiniteFloat> Quantizer3d<T> {
         }
     }
 
+    /// Quantize with the Round function of truncation of IEEE754
+    pub fn quantize_ieee754(&self, vec: (T, T, T)) -> (usize, usize, usize) {
+        (
+            self.quantizer_x.quantize_ieee754(vec.0),
+            self.quantizer_y.quantize_ieee754(vec.1),
+            self.quantizer_z.quantize_ieee754(vec.2),
+        )
+    }
+
     pub fn quantize(&self, vec: (T, T, T)) -> (usize, usize, usize) {
         (
             self.quantizer_x.quantize(vec.0),

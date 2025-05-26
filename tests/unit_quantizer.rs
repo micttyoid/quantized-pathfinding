@@ -4,9 +4,15 @@ use quantized_pathfinding::{
     utils::quantizer::*,
 };
 
+// common for testing
+mod common;
+use common::PseudoFloat;
+use common::MockQuantizer;
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    type TestQuantizer<T> = MockQuantizer<T>;
 
     #[test]
     fn test_quantizer_f64_with_n() {
@@ -280,71 +286,30 @@ mod tests {
         assert_eq!(q.quantize(PseudoFloat::new(0.5)), 1); // Should round to nearest
 
         assert_eq!(q.quantize(PseudoFloat::new(-0.1)), 0); // Should round to 0
-    }    
+    }
+
+
+    #[test]
+    fn test_all_round_methods() {
+        let quantizer = MockQuantizer::with_n( 0.0f32, 1.0f32, 2);
+
+        assert_eq!(quantizer.quantize(0.0), 0);
+        assert_eq!(quantizer.quantize(1.0), 1);
+
+        assert_eq!(quantizer.quantize_ieee754(0.5), 0); // Should round to nearest
+        assert_eq!(quantizer.quantize(0.5), 1); // Should round to nearest
+
+        let quantizer = Quantizer::with_n(0.0f32, 1.0f32, 2);
+
+        assert_eq!(quantizer.quantize(0.0), 0);
+        assert_eq!(quantizer.quantize(1.0), 1);
+
+        assert_eq!(quantizer.quantize_ieee754(0.5), 0); // Should round to nearest
+        assert_eq!(quantizer.quantize(0.5), 1); // Should round to nearest        
+    }       
 }
 
 fn test_generic_quantizer<T: FiniteFloat>(a: T, b: T, n_levels: usize, test_val: T) -> usize {
     let q = Quantizer::with_n(a, b, n_levels);
     q.quantize(test_val)
-}
-
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub struct PseudoFloat {
-    value: f64,
-}
-
-impl PseudoFloat {
-    pub fn new(value: f64) -> Self {
-        Self { value }
-    }
-    
-    pub fn value(&self) -> f64 {
-        self.value
-    }
-}
-
-impl Add for PseudoFloat {
-    type Output = Self;
-    
-    fn add(self, rhs: Self) -> Self::Output {
-        Self { value: self.value + rhs.value }
-    }
-}
-
-impl Sub for PseudoFloat {
-    type Output = Self;
-    
-    fn sub(self, rhs: Self) -> Self::Output {
-        Self { value: self.value - rhs.value }
-    }
-}
-
-impl Mul for PseudoFloat {
-    type Output = Self;
-    
-    fn mul(self, rhs: Self) -> Self::Output {
-        Self { value: self.value * rhs.value }
-    }
-}
-
-impl Div for PseudoFloat {
-    type Output = Self;
-    
-    fn div(self, rhs: Self) -> Self::Output {
-        Self { value: self.value / rhs.value }
-    }
-}
-
-impl FiniteFloat for PseudoFloat {
-    fn from_usize(n: usize) -> Self {
-        Self { value: n as f64 }
-    }
-    
-    fn to_usize(self) -> usize {
-        self.value as usize
-    }
-    
-    fn round(self) -> Self {
-        Self { value: self.value.round() }
-    }
 }
