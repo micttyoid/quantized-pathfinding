@@ -37,10 +37,13 @@ pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
 ## QnA
 
 **What'd be different from theory?**
-It's finite. use the boundries instead of infinity in those procedures.
+
+It's finite. Use the boundry instead of infinity in [from-book procedures](https://lukeyoo.fyi/recap/2025/5/dijkstra).
 
 **How to use them?**
-You'd probably mix with other functionality or algorithms.
+
+You'd probably mix with other functionalities or algorithms.
 
 **Any unobvious catch?**
+
 The input type seems very generous but it may need more traits or method **as you need** within the explorative body of the algorithm.
