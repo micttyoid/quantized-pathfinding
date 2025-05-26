@@ -1,5 +1,8 @@
 # Quantized-pathfinding
 
+<video 
+src='https://recruiter-magnet.lukeyoo.fyi/static/videos/q_astar2d.mp4'></video>
+
 ## Motivation
 
 I had a picking plugin, which is getting bloated. So i decided to separate 
