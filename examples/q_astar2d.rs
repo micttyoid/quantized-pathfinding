@@ -23,7 +23,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>>  {
     let pillars = create_spread_pillars(drawing_area, rng.random_range(5..42));
     let rand_pillars = RandomPillar::new(drawing_area);
 
-    let foo_v = foo(
+    let solution = q_astar2d(
         start, goal, drawing_area,
         pillars.clone(), rand_pillars.clone()
     );
@@ -51,8 +51,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>>  {
     root.draw(&dot_and_label(start[0]/drawing_area[0], start[0]/drawing_area[1]))?;
     root.draw(&dot_and_label(goal[0]/drawing_area[0], goal[0]/drawing_area[1]))?;
     root.present()?;    
-    for (v1, v2) in foo_v {
-        println!("{}, {} -> {} {}", v1[0], v1[1], v2[0], v2[1]);
+    for (v1, v2) in solution {
+        println!("({:.2},{:.2}) -> ({:.2},{:.2})", v1[0], v1[1], v2[0], v2[1]);
         root.draw(&draw_line_segment(v1, v2, drawing_area))?;
     }
     Ok(())
@@ -60,7 +60,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>>  {
 
 const N_LEVELS: [usize; 2] = [25, 25];
 
-fn foo(
+fn q_astar2d(
     start: [f32; 2], goal: [f32; 2], bounds: [f32; 2],
     pillars: Vec<Pillar>, rand_pillars: RandomPillar,
 ) -> Vec<([f32; 2], [f32; 2])>{
