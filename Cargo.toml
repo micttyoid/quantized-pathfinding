@@ -1,7 +1,10 @@
 [package]
-name = "quantized_pathfinding"
+name = "quantized-pathfinding"
 version = "0.1.0"
 edition = "2024"
+authors = ["Luke Yoo <w.lukeyoo@gmail.com>"]
+description = "Quantization before pathfinding"
+license = "BSD-3-Clause"
 
 [dependencies]
 pathfinding = "4.14.0"
