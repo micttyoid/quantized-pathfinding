@@ -1,0 +1,12 @@
+[package]
+name = "quantized_pathfinding"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+pathfinding = "4.14.0"
+
+[dev-dependencies]
+bevy = "0.16.0"
+bevy_rapier3d = "0.30.0"
+rapier3d = "0.26.1"
