@@ -7,10 +7,7 @@ the algorithmic part.
 
 ## Currently working algorithm(s)
 
-None! I need to de-mess(yuk!) my code(which seems 
-[working](https://youtu.be/JAGTxxRinCU)) before publishing :p
-
-`quantized_astar` will be done in a week(will be done before 05-31-2025).
+- `quantized_astar`
 
 ## How does this work
 
@@ -38,12 +35,10 @@ pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
 
 **What'd be different from theory?**
 
-It's finite. Use the boundry instead of infinity in [from-book procedures](https://lukeyoo.fyi/recap/2025/5/dijkstra).
-
-**How to use them?**
-
-You'd probably mix with other functionalities or algorithms.
+It's finite. Use the boundry instead of infinity in 
+[from-book procedures](https://lukeyoo.fyi/recap/2025/5/dijkstra).
 
 **Any unobvious catch?**
 
-The input type seems very generous but it may need more traits or method **as you need** within the explorative body of the algorithm.
+The input type seems very generous but it may need more traits or method 
+**as you need** within the explorative body of the algorithm.
