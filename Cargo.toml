@@ -19,3 +19,7 @@ rapier3d = "0.26.1"
 [[example]]
 name = 'q-astar2d'
 path = 'examples/q_astar2d.rs'
+
+[[example]]
+name = 'q-astar2d-simple'
+path = 'examples/q_astar2d_simple.rs'

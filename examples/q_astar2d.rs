@@ -8,6 +8,7 @@ use quantized_pathfinding::{
     utils::quantizer::Quantizer,
     directed::*,
 };
+
 use rand::Rng;
 
 mod helpers;
@@ -110,14 +111,14 @@ fn q_astar2d(
     let mut drawable_paths: Vec<([f32; 2], [f32; 2])> = vec![];
     match result {
         Some((path, cost)) => {
-            println!("Found 3D path with cost {} ({} steps):", cost, path.len());
+            println!("Found 2D path with cost {} ({} steps):", cost, path.len());
             let mut pos_old: [f32; 2] = start;
             for (_, pos_new) in path.iter().enumerate() {
                 drawable_paths.push((pos_old, *pos_new));
                 pos_old = pos_new.clone();                
             } 
         }
-        None => println!("No 3D path found"),
+        None => println!("No 2D path found"),
     }
     drawable_paths
 }
