@@ -13,8 +13,9 @@ the algorithmic part.
 
 ## How does this work
 
-This preprocesses the input before the target algorithm(pathfinding)
-and roughly recovers the output.
+This [transforms](https://lukeyoo.fyi/recap/2025/5/linear-quantization) 
+the input before the target algorithm(pathfinding) and roughly recovers 
+the output.
 
 ```mermaid
 flowchart LR
