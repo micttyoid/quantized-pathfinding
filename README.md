@@ -1,7 +1,6 @@
 # Quantized-pathfinding
 
-<video 
-src="https://recruiter-magnet.lukeyoo.fyi/static/videos/q_astar2d.mp4"></video>
+<video src="https://github.com/user-attachments/assets/962aead2-a4d6-4fb0-a127-3125184f791d"></video>
 
 ## Motivation
 
@@ -32,7 +31,7 @@ flowchart LR
 
 Indeed(to just use algorithm), you don't need to use this. 
 You can, for example, implement float-like type to directly work with 
-pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
+[pathfinding](https://docs.rs/pathfinding/latest/pathfinding/).
 
 ## QnA
 
