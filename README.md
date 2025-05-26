@@ -1,7 +1,7 @@
 # Quantized-pathfinding
 
 <video 
-src='https://recruiter-magnet.lukeyoo.fyi/static/videos/q_astar2d.mp4'></video>
+src="https://recruiter-magnet.lukeyoo.fyi/static/videos/q_astar2d.mp4"></video>
 
 ## Motivation
 
