@@ -1,7 +1,7 @@
 use std::ops::{Add, Sub, Mul, Div};
 use quantized_pathfinding::{
     traits::*,
-    utils::quantizerv2::*,
+    utils::quantizer::*,
 };
 
 #[cfg(test)]
