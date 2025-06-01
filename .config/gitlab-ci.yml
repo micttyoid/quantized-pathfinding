@@ -1,0 +1,33 @@
+image: lukeyoo/rustc-image:latest
+
+variables:
+  CARGO_HOME: /usr/local/share/rust
+  #GIT_SUBMODULE_STRATEGY: recursive  # auto-clones submodules
+
+# cache dependencies to save minutes
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - /usr/local/share/rust
+    - target/
+
+stages:
+#  - setup
+  - test
+
+# Check rustc
+before_script:
+  - rustup default stable
+  - cargo --version
+
+# Check submodule
+#check_submodules:
+#  stage: setup
+#  script:
+#    - git submodule sync --recursive
+#    - git submodule update --init --recursive
+
+cargo_test:
+  stage: test
+  script:
+    - cargo test
