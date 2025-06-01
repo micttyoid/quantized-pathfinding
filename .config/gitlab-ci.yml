@@ -1,3 +1,4 @@
+# https://gitlab.com/micttyoid/quantized-pathfinding/-/jobs
 image: lukeyoo/rustc-image:v0.1.4_1.87.0
 
 variables:
