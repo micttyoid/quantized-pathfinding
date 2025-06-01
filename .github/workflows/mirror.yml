@@ -1,7 +1,7 @@
 name: Mirror
 on:
   push:
-    branches: [ main ]
+    branches: [ main, github-runner ]
   schedule:
     - cron: '*/10 * * * *'  # every 10 minutes
   workflow_dispatch:
