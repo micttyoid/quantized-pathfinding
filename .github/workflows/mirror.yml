@@ -19,7 +19,7 @@ jobs:
       run: |
         git config --global user.name "GitHub Mirror Bot"
         git config --global user.email "github-mirror-bot@users.noreply.github.com"
-        git push https://${GITLAB_ACCESS_TOKEN_NAME}:${GITLAB_ACCESS_TOKEN}@gitlab.com/${GITLAB_USERNAME}/${GITLAB_REPOSITORY}.git main
+        git push --all https://${GITLAB_ACCESS_TOKEN_NAME}:${GITLAB_ACCESS_TOKEN}@gitlab.com/${GITLAB_USERNAME}/${GITLAB_REPOSITORY}.git
       env:
         GITLAB_USERNAME: micttyoid
         GITLAB_REPOSITORY: quantized-pathfinding
