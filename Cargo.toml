@@ -10,11 +10,11 @@ license = "BSD-3-Clause"
 pathfinding = "4.14.0"
 
 [dev-dependencies]
-bevy = "0.16.0"
-bevy_rapier3d = "0.30.0"
+#bevy = "0.16.0"
+#bevy_rapier3d = "0.30.0"
 plotters = "0.3.7"
 rand = "0.9.1"
-rapier3d = "0.26.1"
+#rapier3d = "0.26.1"
 
 [[example]]
 name = 'q-astar2d'
