@@ -17,16 +17,9 @@ jobs:
 
     - name: Mirror to GitLab
       run: |
-        # Set up GitLab remote
         git remote add gitlab https://gitlab.com/$GITLAB_USERNAME/$GITLAB_REPOSITORY.git
-        # Alternatively for SSH (requires SSH key setup):
-        # git remote add gitlab git@gitlab.com:$GITLAB_USERNAME/$GITLAB_REPOSITORY.git
-        
-        # Configure git with your credentials
         git config --global user.name "GitHub Mirror Bot"
         git config --global user.email "github-mirror-bot@users.noreply.github.com"
-        
-        # Push all branches and tags to GitLab
         git push --mirror gitlab
       env:
         GITLAB_USERNAME: micttyoid
