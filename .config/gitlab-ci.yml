@@ -1,4 +1,4 @@
-image: lukeyoo/rustc-image:latest
+image: lukeyoo/rustc-image:v0.1.4_1.87.0
 
 variables:
   CARGO_HOME: /usr/local/share/rust
